@@ -12,9 +12,9 @@
 ***
 ### What is Regular Expressions
 
->This module provides regular expression matching operations similar to those found in Perl. [https://docs.python.org/3/library/re.html]
+>"This module provides regular expression matching operations similar to those found in Perl." [https://docs.python.org/3/library/re.html]
 
->A regular expression (or RE) specifies a set of strings that matches it [https://docs.python.org/3/library/re.html]
+>"A regular expression (or RE) specifies a set of strings that matches it" [https://docs.python.org/3/library/re.html]
 
 And in this library, it gives us all of the functions required to find out if any particular string matches the given RE, as well as many other useful functions. More on the functions below.
 
