@@ -12,6 +12,8 @@
 ***
 ### What is Regular Expressions
 
+>This module provides regular expression matching operations similar to those found in Perl. [https://docs.python.org/3/library/re.html]
+
 >A regular expression (or RE) specifies a set of strings that matches it [https://docs.python.org/3/library/re.html]
 
 And in this library, it gives us all of the functions required to find out if any particular string matches the given RE, as well as many other useful functions. More on the functions below.
@@ -95,7 +97,7 @@ if result:
 Regular expressions use special characters and syntax to define patterns. These characters include ., *, +, ?, [], (), and more. You should become familiar with regex syntax to create effective patterns.
 
 ##### Test and Debug: 
-Regular expressions can be tricky, so out of all of the things I can say to help you is that it's essential to test your patterns with various inputs to ensure they work as expected. You can use online regex testers to experiment and refine your patterns, here is the one I used to learn why my regular expressions weren't working at first [https://regex101.com]
+Regular expressions can be tricky, so out of all of the things I can say to help you, is that it's essential to test your patterns with various inputs to ensure they work as expected. You can use online regex testers to experiment and refine your patterns, here is the one I used to learn why my regular expressions weren't working at first [https://regex101.com]
 
 ***
 
@@ -183,11 +185,13 @@ The regular expression library is a powerful tool. Here are some of the key func
 
 >"The concept of regular expressions began in the 1950s, when the American mathematician Stephen Cole Kleene formalized the concept of a regular language" [https://en.wikipedia.org/wiki/Regular_expression]
 
-and the first version of python to include regular expressions was python 1.5 [https://python.readthedocs.io/en/v2.7.2/howto/regex.html] which was released January 3rd 1998. [http://python-history.blogspot.com/2009/01/brief-timeline-of-python.html]
+and the first version of python to include regular expressions was python 1.5 [https://python.readthedocs.io/en/v2.7.2/howto/regex.html] 
+
+which was released January 3rd 1998. [http://python-history.blogspot.com/2009/01/brief-timeline-of-python.html]
 
 #### Why I selected Regular Expressions
 
-I selected regular expressions as I always wanted to learn how to use them to make a text interpreter that can evaluate a lot of things and be expandible.
+I selected regular expressions as I always wanted to learn how to use them to make a text interpreter that can evaluate a lot of things and be expandible. As well I always saw regular expressions being used and had no idea how to read through them.
 
 #### How it shaped how I learn python
 
@@ -199,4 +203,4 @@ My overall experience with Regular Expressions is very good as I was able to mak
 
 I would recomend regular expressions to anyone who needs to validate user given input, to read throught data to find and replace something specific, and/or if they need to recursively read parts of a string for any reason.
 
-I am planning on using this whenever it seems useful as it is very strong for being easy to understand.
+I am planning on using this whenever it seems useful as it is very strong tool for being easy to understand.

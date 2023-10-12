@@ -13,6 +13,7 @@ For the first exploration activity, I decided to use python's regular expression
 The program is pretty easy to run:
 1. Simply navigate to the folder where the TextualCalculator.py is.
 2. Right click on the empty space, and select the 'open in terminal' option.
+![Screenshot](./Open_In_Terminal.png)
 3. If that isn't an option copy the path of the folder and open the terminal and use: ```cd <PATH>```
 4. Then use: ```python TextualCalculator.py``` 
 
