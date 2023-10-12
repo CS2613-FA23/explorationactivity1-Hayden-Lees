@@ -2,7 +2,7 @@
 ## Table of Contents
 1. [What is Regular Expressions](#what-is-regular-expressions) 
     1. [Why use Regular Expressions](#why-use-regular-expressions)
-    2. [How I used Regular Expressions](#how-i-used-regular-expressions)
+    2. [How to used Regular Expressions](#how-to-used-regular-expressions)
 2. [What can Regular Expression do](#what-can-regular-expression-do)
 3. [Other Questions](#other-questions)
     1. [When was Regular Expressions created](#when-was-regular-expressions-created)
@@ -14,75 +14,88 @@
 
 >A regular expression (or RE) specifies a set of strings that matches it [https://docs.python.org/3/library/re.html]
 
-And in this library, it gives us all of the functions required to find out if any particular string matches the given RE, as well as many other useful functions. More on the functions [here](#what-can-regular-expressions-do)
+And in this library, it gives us all of the functions required to find out if any particular string matches the given RE, as well as many other useful functions. More on the functions below.
 
 #### Why use Regular Expressions
 
-The purpose behind using regular expressions is in the properties of regular expression, and using them to matches their specific set of strings. This allows for a lot of control without resolving to a lot of if else statements.
+The purpose behind using regular expressions is in the properties of regular expression, and using them to matches their specific set of strings. This allows for a lot of control without resolving to a lot of if else statements. As well is allows for more precise manipulation of strings, and can be used to validate user input.
 
-#### How I used Regular Expressions
+#### How to used Regular Expressions
 
-In my TextualCalculator I used specific regular expressions to match which mode the calculator is in such as evaluate, truth, or compare and other specific commands such as exit, and help. When using evaluate, truth, or compare it also helps with evaluating the given math equation(s) in a recursive manner as it is by far the easiest way to evaluate an equation of a variable amount of operators. 
+Here's a basic guide on how to use regular expressions in Python:
 
-##### The Regular Expressions I used
-
-```py
-INITIAL_REG = re.compile(r"""^\s*
-    ((?P<exit>exit|close|esc|escape|$)|
-    (?P<help>help|cmds?|commands?)| 
-    (?P<eval>eval(uate)?|what\ (is|does))|
-    (?P<bool>truth|bool|(?<!what)(is|does))|
-    (?P<comp>compare))\s*
-    (?P<rest>.+)?$""", re.X)
-EVALUATE_REG = re.compile(r"""^\s*
-    (?P<open>\(+)?\s*
-    (?P<operand>
-    (?P<func_name>[a-z_0-9]+)\((?P<func_value>.+?\)?)\)|
-    (\d+(\.\d+)?|pi|e|ans))\s* 
-    (?P<close>\)+)?\s* 
-    (?P<sop_operators>[!])?\s*
-    (?P<mop_operators>[+\-*/^%])?\s*
-    (?P<rest>.+)?$""", re.X)
-TRUTH_REG = re.compile(r"""^\s*
-    (?P<first>.+?)\s*
-    (?P<comp><=?|>=?|!?=|
-    greater\ than(\ or\ equal\ to)?|
-    less\ than(\ or\ equal\ to)?|
-    (not\ )?equal\ to)\s*
-    (?P<second>.+)\s*$""", re.X)
-COMPARE_REG = re.compile(r"""^\s*
-    (?P<first>.+?)\s*
-    (and|\||&)\s*
-    (?P<second>.+)\s*$""", re.X)
-```
-Starting with the ```INITIAL_REG```,  this regular expression Pattern object is used to see whether the users input matches one of the commands I have built in.
-
-Similarly ```EVALUATE_REG``` is used to recursively comprehend mathematical equations.
-
-Both `TRUTH_REG` and `COMPARE_REG` process their input into two mathematical equations which are further processed by `EVALUATE_REG` then returned and are compared or are checked with the give condition.
-
-##### The functions I made with the regular expressions
-
-Here is my `recursive_read(...)`
+##### Import the re Module:
+To use regular expressions in Python, you need to import the re module. You can do this with the following line of code:
 
 ```py
-def recursive_read(s: str, reg: re.Pattern, rec: str): 
-    #recusively checks a string using the given regex and the recursive group string
-    m = reg.search(s)   #checks the string (s) with the regex
-    if m:   #if it matched anything
-        m_list = [m]    #makes a list of the matches for later comprehension
-        if m[rec] != None:  
-            #checks if the match has more of the recursive pattern
-            nex = recursive_read(m[rec], reg, rec)  #the recursive call
-            if nex == None: return m_list   
-            #if the rec pattern does not match anything
-            for i in nex: m_list.append(i)
-            #adds all of the recursive matches to this levels list
-        return m_list
-    return None
+import re
+```
+##### Compile Your Regular Expression:
+Before applying a regex pattern to a string, you should compile it. This step optimizes the pattern and makes it easier to reuse. Use the `re.compile()` function:
+
+```py
+pattern = re.compile(r'your_regex_pattern_here')
+```
+Replace 'your_regex_pattern_here' with your actual regular expression.
+
+##### Apply Regular Expressions:
+Once you have a compiled pattern, you can use it for various purposes. Here are some common regex functions in Python:
+
+`search()`: To search for a pattern within a string and return the first match.
+
+```py
+result = pattern.search(input_string)
 ```
 
-It takes a string, a Pattern object, and another string of the name of the recursive group name, it checks if there is any match from the full string and if it does we check if the recursive group is not `None` and calls this function on the string of the recursive group
+`match()`: To check if a string starts with a specific pattern.
+
+```py
+result = pattern.match(input_string)
+```
+
+`findall()`: To find all occurrences of a pattern in a string and return them as a list.
+
+```py
+results = pattern.findall(input_string)
+```
+
+`sub()`: To replace matched patterns with a specified string.
+
+```py
+modified_string = pattern.sub(replacement_string, input_string)
+```
+
+`split()`: To split a string into a list of substrings based on a regex pattern.
+
+```py
+substrings = pattern.split(input_string)
+```
+
+`finditer()`: To find all matches in a string and return them as an iterator.
+
+```py
+matches = pattern.finditer(input_string)
+```
+
+##### Access Matched Text and Groups:
+Depending on the function used (e.g., `search()`, `findall()`, or `finditer()`), you can access matched text and groups. For example, to retrieve matched text in a `search()`:
+
+```py
+if result:
+    matched_text = result.group()
+```
+To access specific groups within the match (if you used capturing groups in your regex), you can use group(n) to access the n-th captured group:
+
+```py
+if result:
+    group_1 = result.group(1)
+    group_2 = result.group(2)
+```
+##### Regular Expression Patterns:
+Regular expressions use special characters and syntax to define patterns. These characters include ., *, +, ?, [], (), and more. You should become familiar with regex syntax to create effective patterns.
+
+##### Test and Debug: 
+Regular expressions can be tricky, so out of all of the things I can say to help you is that it's essential to test your patterns with various inputs to ensure they work as expected. You can use online regex testers to experiment and refine your patterns, here is the one I used to learn why my regular expressions weren't working at first [https://regex101.com]
 
 ***
 
